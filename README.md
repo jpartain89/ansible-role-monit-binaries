@@ -8,7 +8,7 @@ Ansible role to install Monit from their precompiled binaries.
 
 ## Role Variables
 
-`monit_monitrc_file`: This variable is for where you want the system to find your `monitrc` configuration file. Its defaulted to `/etc/monitrc`
+`monit_monitrc_file`: This variable is for where you want the system to find your `monitrc` configuration file. Its defaulted to `/etc/monitrc` (I have my personal `monitrc` file at `/etc/monit/monitrc`, so its all in one parent directory)
 `monit_executable`: This is for where you want monit's program file to be installed to. Its default is set to `/usr/local/bin/monit`
 
 ## Example Playbook
