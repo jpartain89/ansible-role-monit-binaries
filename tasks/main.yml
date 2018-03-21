@@ -7,13 +7,13 @@
 - include_vars: raspberry_pi.yml
   when:
     - ansible_os_family == 'Debian'
-    - ansible_lsb.id == 'Raspbian'
+    - ansible_machine == 'armv7l'
   failed_when: false
 
 - include_vars: debian_64.yml
   when:
     - ansible_os_family == 'Debian'
-    - ansible_userspace_architecture == 'x86_64'
+    - ansible_machine == 'x86_64'
   failed_when: false
 
 - include_tasks: install_binary.yml
