@@ -1,6 +1,6 @@
 ---
 
-- name: Install Required Apps
+- name: Debian | Install Required Apps
   apt:
     update_cache: yes
     cache_valid_time: 32400
@@ -11,6 +11,18 @@
     - wget
     - tar
   become: true
+  when: ansible_os_family == "Debian"
+
+- name: macOS | Install Required Apps
+  homebrew:
+    state: present # state of the package
+    name: "{{ item }}"
+    update_homebrew: yes
+  with_items:
+    - html2text
+    - wget
+    - tar
+  when: ansible_os_family == "Darwin"
 
 - name: Register Monit's Published Version Number
   shell: "wget -q  {{ monit_binary_html }} -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}'"
