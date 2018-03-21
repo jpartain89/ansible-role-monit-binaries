@@ -12,8 +12,3 @@
   shell: '/usr/local/bin/lunchy restart -w com.tildeslash.monit'
   become: true
   when: ansible_os_family == 'Darwin'
-
-- name: Remove Download Directory
-  file:
-    path: "/tmp/monit-{{ _monit_binary_version.stdout }}"
-    state: absent
