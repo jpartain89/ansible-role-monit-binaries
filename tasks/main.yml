@@ -7,7 +7,7 @@
 - include_vars: raspberry_pi.yml
   when:
     - ansible_os_family == 'Debian'
-    - ansible_macine == 'armv7l'
+    - ansible_machine == 'armv7l'
   failed_when: false
 
 - include_vars: debian_64.yml
