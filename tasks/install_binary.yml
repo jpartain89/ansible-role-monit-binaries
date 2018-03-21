@@ -15,7 +15,7 @@
 
 - name: macOS | Install Required Apps
   homebrew:
-    state: present # state of the package
+    state: present
     name: "{{ item }}"
     update_homebrew: yes
   with_items:
@@ -50,3 +50,6 @@
     mode: 0555
   when: _monit_binary_downloaded|changed
   become: true
+  notify:
+    - 'Debian | Restart Monit'
+    - 'macOS | Restart Monit'
