@@ -5,7 +5,9 @@
   failed_when: false
 
 - include_vars: raspberry_pi.yml
-  when: ansible_lsb.id == 'Raspbian'
+  when:
+    - ansible_os_family == 'Debian'
+    - ansible_lsb.id == 'Raspbian'
   failed_when: false
 
 - include_vars: debian_64.yml
