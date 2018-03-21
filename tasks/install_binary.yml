@@ -13,17 +13,17 @@
   become: true
 
 - name: Register Monit's Published Version Number
-  command: "wget -q  {{ monit_binary_html }} -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}'"
+  shell: "wget -q  {{ monit_binary_html }} -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}'"
   register: _monit_binary_version
 
 - debug: var=_monit_binary_version
 
 - name: Download and Decompress Monit's Binary Files
   unarchive:
-    src: "{{ monit_binary_html }}{{ _monit_binary_version }}/monit-{{ _monit_binary_version }}-{{ monit_os_var }}.tar.gz"
+    src: "{{ monit_binary_html }}{{ _monit_binary_version.stdout }}/monit-{{ _monit_binary_version.stdout }}-{{ monit_os_var }}.tar.gz"
     dest: /tmp
     remote_src: yes
-    creates: "/tmp/monit-{{ _monit_binary_version }}"
+    creates: "/tmp/monit-{{ _monit_binary_version.stdout }}"
   register: _monit_binary_downloaded
 
 - debug: var=_monit_binary_downloaded
@@ -31,9 +31,10 @@
 - name: Install New Monit Binary
   copy:
     dest: "{{ monit_executable }}"
-    src: "/tmp/monit-{{ _monit_binary_version }}/bin/monit"
+    src: "/tmp/monit-{{ _monit_binary_version.stdout }}/bin/monit"
     remote_src: yes
     owner: "{{ ansible_user_uid }}"
     group: "{{ ansible_user_gid }}"
     mode: 0555
   when: _monit_binary_downloaded|changed
+  become: true
