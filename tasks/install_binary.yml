@@ -2,7 +2,6 @@
 
 - name: Install Required Apps
   apt:
-    upgrade: yes
     update_cache: yes
     cache_valid_time: 32400
     name: "{{ item }}"
