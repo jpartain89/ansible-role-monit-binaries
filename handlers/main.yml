@@ -1,11 +1,10 @@
 ---
 
 - name: Debian | Restart Monit
-  systemd:
-    state: restarted
-    name: monit.service
+  service:
+    name: monit
     enabled: yes
-    daemon_reload: yes
+    state: restarted
 
 - name: macOS | Restart Monit
   shell: '/usr/local/bin/lunchy restart -w com.tildeslash.monit'

@@ -23,11 +23,10 @@
   register: _macos_autostart_script
 
 - name: Debian | Register Monit's Autostart Script
-  systemd:
+  service:
     state: started
-    name: monit.service
+    name: monit
     enabled: yes
-    daemon_reload: yes
   when:
     - _debian_autostart_script|changed
     - ansible_os_family == "Debian"
