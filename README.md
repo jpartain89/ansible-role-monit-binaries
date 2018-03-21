@@ -1,6 +1,6 @@
 # jpartain89.install-monit-binary
 
-| **Travis-CI*** |
+| **Travis-CI** |
 | -------- |
 | [![Build Status](https://travis-ci.org/jpartain89/ansible-role-monit-binaries.svg?branch=master)](https://travis-ci.org/jpartain89/ansible-role-monit-binaries) |
 

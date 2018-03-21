@@ -37,3 +37,4 @@
     group: "{{ ansible_user_gid }}"
     mode: 0555
   when: _monit_binary_downloaded|changed
+  become: true
