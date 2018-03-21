@@ -5,6 +5,7 @@
     name: monit
     enabled: yes
     state: restarted
+  failed_when: false
 
 - name: macOS | Restart Monit
   shell: '/usr/local/bin/lunchy restart -w com.tildeslash.monit'
