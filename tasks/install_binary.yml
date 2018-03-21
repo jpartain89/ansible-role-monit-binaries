@@ -10,6 +10,7 @@
     - html2text
     - wget
     - tar
+  become: true
 
 - name: Register Monit's Published Version Number
   command: "wget -q  {{ monit_binary_html }} -O - | html2text | grep DIR | tail -n 1 | tr -d / | awk '{print $2}'"
